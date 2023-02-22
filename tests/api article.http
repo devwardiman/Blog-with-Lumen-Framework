@@ -1,0 +1,141 @@
+@hostname = localhost
+@port = 443
+@sheme = https
+@host = {{hostname}}:{{port}}
+@base_url = {{sheme}}://{{hostname}}
+@contentType = application/json
+### @name landing_page
+GET {{base_url}}/ HTTP/1.1
+Accept: {{contentType}}
+
+### @name list_article
+GET {{base_url}}/api/article HTTP/1.1
+X-Requested-With: XMLHttpRequest
+
+@id = 985e4fcc-72c8-497d-857f-44c9bd4dc59f
+
+### @name store_article
+POST {{base_url}}/api/article/create HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_title"
+
+article_title
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_abstract"
+
+article_abstract
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_status"
+
+article_status
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_content"
+
+article_content
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_cover"; filename="photo.png"
+Content-Type: image/png
+
+< ./photo.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_feature"; filename="photo.png"
+Content-Type: image/png
+
+< ./photo.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="categories[]"
+
+985d3dec-a4e5-437b-ba13-52fd07178e84
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+# Content-Disposition: form-data; name="categories[]"
+
+# 985d45a1-fdc1-481c-abb2-d3344f5e264e
+# ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+### @name index_article
+GET {{base_url}}/api/article?id={{id}} HTTP/1.1
+
+### @name update_article
+POST {{base_url}}/api/article/update/{{id}} HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="_method"
+
+PATCH
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_title"
+
+article_title
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_abstract"
+
+article_abstract
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_status"
+
+article_status
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_content"
+
+article_content
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_cover"; filename="photo.png"
+Content-Type: image/png
+
+< ./photo.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_feature"; filename="photo.png"
+Content-Type: image/png
+
+< ./photo.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="categories[]"
+
+985d3dec-a4e5-437b-ba13-52fd07178e84
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="categories[]"
+
+985d45a1-fdc1-481c-abb2-d3344f5e264e
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+### @name update_publish_article
+POST {{base_url}}/api/article/publish/{{id}} HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="_method"
+
+PUT
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_status"
+
+article_status
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_cover"; filename="photo.png"
+Content-Type: image/png
+
+< ./photo.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="article_feature"; filename="photo.png"
+Content-Type: image/png
+
+< ./photo.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="categories[]"
+
+985d3dec-a4e5-437b-ba13-52fd07178e84
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="categories[]"
+
+985d45a1-fdc1-481c-abb2-d3344f5e264e
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###
+DELETE {{base_url}}/api/article/delete/{{id}} HTTP/1.1
+###
+
+### @name komentar
+PATCH {{base_url}}/2023/02/VirtualBox-7.0.6-Full-Version

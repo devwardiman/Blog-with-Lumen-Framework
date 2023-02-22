@@ -1,0 +1,46 @@
+@hostname = localhost
+@port = 443
+@sheme = https
+@host = {{hostname}}:{{port}}
+@base_url = {{sheme}}://{{hostname}}
+@contentType = application/json
+###
+GET {{base_url}}/ HTTP/1.1
+Accept: {{contentType}}
+###
+GET {{base_url}}/api/user/ HTTP/1.1
+###
+@type = writer
+###
+GET {{base_url}}/api/user/{{type}} HTTP/1.1
+###
+POST {{base_url}}/api/user/create HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "name" : "member",
+    "email" : "member@gmail.com",
+    "password" : "123",
+    "repeatpassword" : "123",
+    "displayname" : "member",
+    "type" : "member"
+}
+###
+@id = 6
+###
+GET {{base_url}}/api/user?id={{id}} HTTP/1.1
+###
+PATCH {{base_url}}/api/user/update/{{id}} HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "name" : "admin",
+    "email" : "admin@gmail.com",
+    "password" : "123",
+    "repeatpassword" : "123",
+    "displayname" : "admin",
+    "type" : "writer"
+}
+###
+DELETE {{base_url}}/api/user/delete/{{id}} HTTP/1.1
+###
